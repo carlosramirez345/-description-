@@ -254,14 +254,15 @@
 
         .pitch-form {
             flex: 2;
-            min-width: 300px;
+            min-width: 250px;
             display: grid;
             grid-template-columns: 1fr;
             gap: 15px;
+            width: 100%;
         }
 
         .pitch-form label {
-            font-size: 0.9em;
+            font-size: clamp(0.8em, 2.5vw, 0.9em);
             color: var(--text-light);
             margin-bottom: 5px;
             display: block;
@@ -272,13 +273,14 @@
         .pitch-form textarea,
         .pitch-form select {
             width: 100%;
-            padding: 12px;
+            padding: clamp(8px, 2vw, 12px);
             background-color: #3a3a5a;
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: var(--text-light);
-            font-size: 1em;
+            font-size: clamp(0.9em, 2.5vw, 1em);
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
         }
 
         .pitch-form input:focus,
@@ -291,7 +293,8 @@
 
         .pitch-form textarea {
             resize: vertical;
-            min-height: 80px;
+            min-height: clamp(60px, 20vw, 120px);
+            font-family: 'Poppins', sans-serif;
         }
 
         .upload-section {
@@ -318,7 +321,7 @@
         /* hi bitch */
         .pitch-display {
             flex: 1;
-            min-width: 280px;
+            min-width: 250px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -522,22 +525,26 @@
             margin: 20px auto;
             background-color: #20203a;
             max-width: 100%;
+            width: 100%;
+            padding: 10px;
+            gap: 1px;
         }
 
         .grid-cell {
             width: 100%;
-            min-width: 30px;
             aspect-ratio: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: clamp(0.8em, 2vw, 1.1em);
+            font-size: clamp(0.7em, 3vw, 1em);
             font-weight: 600;
             color: var(--text-light);
             cursor: pointer;
             user-select: none;
             transition: background-color 0.1s ease, transform 0.1s ease;
             border: 0.5px solid rgba(64, 64, 96, 0.5);
+            padding: 2px;
+            min-height: clamp(25px, 5vw, 40px);
         }
 
         .grid-cell:hover {
@@ -676,41 +683,267 @@
 
             .pitch-arena {
                 flex-direction: column;
-                padding: 20px;
-                gap: 20px;
+                padding: 15px;
+                gap: 15px;
             }
 
-            .pitch-form, .pitch-display { min-width: unset; width: 100%; }
+            .pitch-form { 
+                min-width: unset; 
+                width: 100%;
+                gap: 12px;
+            }
 
-            .product-preview-card { margin-top: 20px; }
+            .pitch-display { 
+                min-width: unset; 
+                width: 100%;
+            }
 
-            .reaction-metrics { flex-direction: column; gap: 10px; }
-            .final-pitch-btn { padding: 12px 20px; font-size: 1em; }
-            .score-display { font-size: 1.2em; }
+            .pitch-form label {
+                font-size: 0.85em;
+                margin-bottom: 3px;
+            }
 
-            .word-search-container {
+            .pitch-form input[type="text"],
+            .pitch-form input[type="number"],
+            .pitch-form textarea,
+            .pitch-form select {
+                padding: 10px;
+                font-size: 0.95em;
+            }
+
+            .pitch-form textarea {
+                min-height: 60px;
+            }
+
+            .product-preview-card { 
+                margin-top: 0;
+                min-height: 200px;
                 padding: 15px;
             }
 
-            .timer-container {
-                gap: 10px;
+            .product-preview-card h3 {
+                font-size: 1.2em;
             }
 
-            .timer-display {
-                font-size: 1.5em;
-                padding: 10px 20px;
-                min-width: 120px;
+            .product-preview-card p {
+                font-size: 0.8em;
             }
 
-            .timer-button {
-                padding: 10px 20px;
+            .product-preview-card .price {
+                font-size: 1.1em;
+            }
+
+            .reaction-metrics { 
+                flex-direction: column; 
+                gap: 8px;
+            }
+
+            .reaction-metrics h4 {
                 font-size: 0.9em;
+            }
+
+            .final-pitch-btn { 
+                padding: 10px 20px; 
+                font-size: 0.9em;
+            }
+            
+            .score-display { font-size: 1em; }
+
+            .word-search-container {
+                padding: 12px;
+            }
+
+            .word-search-container p {
+                font-size: 0.9em;
+                margin-bottom: 15px;
+            }
+
+            #wordSearchGrid {
+                padding: 8px;
+                gap: 0px;
+                margin: 10px auto;
             }
 
             .grid-cell {
-                width: 30px; 
-                height: 30px;
+                font-size: clamp(0.65em, 2.5vw, 0.9em);
+                min-height: clamp(30px, 4.5vw, 35px);
+                padding: 1px;
+            }
+
+            .timer-container {
+                gap: 8px;
+                margin: 15px 0;
+            }
+
+            .timer-display {
+                font-size: 1.3em;
+                padding: 8px 15px;
+                min-width: 110px;
+            }
+
+            .timer-button {
+                padding: 8px 18px;
+                font-size: 0.85em;
+            }
+
+            #wordList {
+                gap: 8px;
+            }
+
+            #wordList li {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+
+            #wordSearchGrid {
+                margin: 15px auto;
+            }
+        }
+
+        /* Extra pequeño para teléfonos muy pequeños */
+        @media (max-width: 480px) {
+            .desktop-frame {
+                width: 97%;
+                margin: 10px auto;
+                padding: 12px;
+                border: 4px solid #3a3a5a;
+                gap: 15px;
+            }
+
+            .hero h1 { 
+                font-size: 1.3em; 
+            }
+            .hero p { 
+                font-size: 0.85em;
+                margin-bottom: 15px;
+            }
+            .cta-button { 
+                padding: 8px 16px; 
+                font-size: 0.85em;
+            }
+
+            .section-title { 
+                font-size: 1.1em; 
+                margin-bottom: 12px;
+                padding-bottom: 8px;
+            }
+
+            .pitch-arena {
+                padding: 12px;
+                gap: 12px;
+            }
+
+            .pitch-form, .pitch-display { 
+                width: 100%;
+            }
+
+            .pitch-form {
+                gap: 10px;
+            }
+
+            .pitch-form label {
+                font-size: 0.8em;
+            }
+
+            .pitch-form input[type="text"],
+            .pitch-form input[type="number"],
+            .pitch-form textarea,
+            .pitch-form select {
+                padding: 8px;
                 font-size: 0.9em;
+            }
+
+            .pitch-form textarea {
+                min-height: 50px;
+            }
+
+            .product-preview-card { 
+                min-height: 180px;
+                padding: 12px;
+            }
+
+            .product-preview-card h3 {
+                font-size: 1em;
+                margin: 5px 0;
+            }
+
+            .product-preview-card p {
+                font-size: 0.75em;
+            }
+
+            .product-preview-card .price {
+                font-size: 1em;
+                margin-top: 10px;
+            }
+
+            .reaction-zone {
+                min-height: 80px;
+                padding: 15px;
+            }
+
+            .reaction-metrics h4 {
+                font-size: 0.8em;
+            }
+
+            .reaction-metrics p {
+                font-size: 0.8em;
+            }
+
+            .final-pitch-btn { 
+                padding: 8px 16px; 
+                font-size: 0.85em;
+            }
+
+            .word-search-container {
+                padding: 10px;
+            }
+
+            .word-search-container p {
+                font-size: 0.85em;
+            }
+
+            #wordSearchGrid {
+                padding: 6px;
+                gap: 0px;
+                margin: 8px auto;
+            }
+
+            .grid-cell {
+                font-size: clamp(0.6em, 2vw, 0.8em);
+                min-height: clamp(28px, 4vw, 32px);
+                padding: 1px;
+            }
+
+            .timer-container {
+                gap: 6px;
+                margin: 12px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .timer-display {
+                font-size: 1.2em;
+                padding: 6px 12px;
+                min-width: 100px;
+            }
+
+            .timer-button {
+                padding: 6px 14px;
+                font-size: 0.8em;
+            }
+
+            #wordList {
+                gap: 6px;
+                padding: 0;
+            }
+
+            #wordList li {
+                padding: 5px 10px;
+                font-size: 0.75em;
+            }
+
+            #wordSearchMessage {
+                font-size: 0.95em;
             }
         }
     </style>
